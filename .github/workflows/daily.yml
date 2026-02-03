@@ -1,9 +1,8 @@
-- name: Install Tools
-        run: pip install requests pandas matplotlib
+name: Daily Update
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs at midnight UTC
-  workflow_dispatch:   # Allows you to click a button to run it manually
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   run-script:
@@ -12,18 +11,26 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+          
       - name: Install Tools
-        run: pip install requests pandas
+        run: pip install requests pandas matplotlib
+        
       - name: Run Tracker
         run: python tracker.py
-- name: Save Results
+        
+      - name: Save Results
         run: |
           git config --global user.name 'Stats-Bot'
           git config --global user.email 'bot@github.com'
-          git add wiki_stats.csv *.png
-          git commit -m "Daily snapshot and charts update" || exit 0
+          # This adds the CSV if it exists
+          git add wiki_stats.csv
+          # This safely adds PNGs only if they actually exist
+          git add *.png || echo "No images to add yet"
+          # This commits only if there are changes, avoiding "nothing to commit" errors
+          git commit -m "Daily snapshot update" || exit 0
           git push
