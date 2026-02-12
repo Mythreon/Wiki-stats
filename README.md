@@ -1,5 +1,5 @@
 # Wiki-stats
 ### Wiki Growth Charts
 ![Pages Growth](growth_pages.png)
-![Edits Growth](growth_edits.png)
+![Edits Total](total_edits.png)
 ![Active Users](daily_activity.png)
