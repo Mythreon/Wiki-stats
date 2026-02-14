@@ -46,7 +46,7 @@ def create_charts(df):
         ('pages', 'Total Wiki Pages', 'growth_pages.png', '#3498db'),
         ('edits', 'Total Edits Over Time', 'total_edits.png', '#9b59b6'),
         ('edits_change', 'Daily Edits (Activity)', 'daily_activity.png', '#e67e22'),
-        ('word_count', 'Total Word Count (CirrusSearch)', 'word_count.png', '#2ecc71')
+        ('cirrussearch-article-words', 'Total Word Count (CirrusSearch)', 'word_count.png', '#2ecc71')
     ]
     
     for column, title, filename, color in metrics:
